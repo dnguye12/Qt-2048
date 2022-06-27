@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
+#include <QKeyEvent>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     Plateau plat = plateauInitial();
     draw(plat);
+
 }
 
 MainWindow::~MainWindow()
@@ -60,4 +61,11 @@ void MainWindow::draw(Plateau plat) {
         }
     }
 
+}
+
+void MainWindow::keyPressEvent(Plateau plat, QKeyEvent *e) {
+    if(e->key() == Qt::Key_W) {
+        plat = deplacementHaut(plat);
+        emit deplace(plat);
+    }
 }

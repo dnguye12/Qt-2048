@@ -21,5 +21,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    void keyPressEvent(Plateau plat, QKeyEvent *e);
 };
 #endif // MAINWINDOW_H
