@@ -1,6 +1,7 @@
 #include "game.h"
 #include <math.h>
 
+size_t score = 0;
 
 Plateau plateauVide() {
     Plateau plat = vector<vector<int>>(4);
@@ -59,6 +60,7 @@ Plateau deplacementGauche(Plateau plat)
                     {
                         plat[hi][hj]*=2;
                         plat[i][j]=0;
+                        score+=plat[hi][hj];
                     }
                     else
                     {
@@ -99,6 +101,7 @@ Plateau deplacementDroite(Plateau plat)
                     {
                         plat[hi][hj]*=2;
                         plat[i][j]=0;
+                        score+=plat[hi][hj];
                     }
                     else
                     {
@@ -139,6 +142,7 @@ Plateau deplacementHaut(Plateau plat)
                     {
                         plat[hi][hj]*=2;
                         plat[i][j]=0;
+                        score+=plat[hi][hj];
                     }
                     else
                     {
@@ -180,6 +184,7 @@ Plateau deplacementBas(Plateau plat)
                     {
                         plat[hi][hj]*=2;
                         plat[i][j]=0;
+                        score+=plat[hi][hj];
                     }
                     else
                     {
@@ -296,4 +301,19 @@ Plateau addblock(Plateau plat) {
 
     }
     return plat;
+}
+
+bool notMoved(Plateau plat1, Plateau plat2) {
+    for(int i = 0; i < 4; i++) {
+        for(int j = 0; j < 4; j++) {
+            if(plat1[i][j] != plat2[i][j]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+int getScore() {
+    return score;
 }

@@ -25,8 +25,13 @@ signals:
 public slots:
    // void deplaced(Plateau plat);
 
+private slots:
+    void on_toolButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+
+
 
     void keyPressEvent(QKeyEvent *e);
 

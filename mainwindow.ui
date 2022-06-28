@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>480</width>
+    <width>490</width>
     <height>667</height>
    </rect>
   </property>
@@ -39,12 +39,11 @@ QGridLayout {
       <property name="maximumSize">
        <size>
         <width>16777215</width>
-        <height>65</height>
+        <height>85</height>
        </size>
       </property>
       <property name="font">
        <font>
-        <family>Montserrat ExtraBold</family>
         <pointsize>26</pointsize>
        </font>
       </property>
@@ -53,7 +52,6 @@ QGridLayout {
         <widget class="QLabel" name="label">
          <property name="font">
           <font>
-           <family>Montserrat SemiBold</family>
            <pointsize>48</pointsize>
            <bold>false</bold>
           </font>
@@ -83,61 +81,137 @@ QGridLayout {
         </spacer>
        </item>
        <item>
-        <widget class="QLabel" name="label_2">
-         <property name="minimumSize">
-          <size>
-           <width>110</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>110</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>Montserrat Black</family>
-          </font>
-         </property>
+        <widget class="QWidget" name="verticalWidget" native="true">
          <property name="styleSheet">
           <string notr="true">background-color: rgb(187, 173, 159);
 border-radius: 5px;
 color: white;</string>
          </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-family: 'Montserrat', sans-serif; &quot; &gt;SCORE&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>27</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Montserrat</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="lineWidth">
+             <number>1</number>
+            </property>
+            <property name="text">
+             <string>Score</string>
+            </property>
+            <property name="scaledContents">
+             <bool>false</bool>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="score">
+            <property name="font">
+             <font>
+              <family>Montserrat Black</family>
+              <pointsize>16</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>0</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_3">
-         <property name="minimumSize">
-          <size>
-           <width>110</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>110</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>Montserrat Black</family>
-          </font>
-         </property>
+        <widget class="QWidget" name="verticalWidget_2" native="true">
          <property name="styleSheet">
           <string notr="true">background-color: rgb(187, 173, 159);
 border-radius: 5px;
 color: white;</string>
          </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-family: 'Montserrat', sans-serif;&quot;&gt;BEST&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>1</number>
+          </property>
+          <property name="topMargin">
+           <number>5</number>
+          </property>
+          <property name="rightMargin">
+           <number>1</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_5">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>27</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Montserrat</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Best</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="best">
+            <property name="font">
+             <font>
+              <family>Montserrat Black</family>
+              <pointsize>16</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>0</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
       </layout>
@@ -183,7 +257,6 @@ color: white;</string>
          </property>
          <property name="font">
           <font>
-           <family>Montserrat ExtraBold</family>
            <pointsize>12</pointsize>
           </font>
          </property>
@@ -239,7 +312,6 @@ border-radius: 5px;</string>
          </property>
          <property name="font">
           <font>
-           <family>Montserrat SemiBold</family>
            <pointsize>30</pointsize>
           </font>
          </property>
@@ -265,7 +337,6 @@ border-radius: 5px;</string>
          </property>
          <property name="font">
           <font>
-           <family>Montserrat SemiBold</family>
            <pointsize>30</pointsize>
           </font>
          </property>
@@ -291,7 +362,6 @@ border-radius: 5px;</string>
          </property>
          <property name="font">
           <font>
-           <family>Montserrat SemiBold</family>
            <pointsize>30</pointsize>
           </font>
          </property>
@@ -317,7 +387,6 @@ border-radius: 5px;</string>
          </property>
          <property name="font">
           <font>
-           <family>Montserrat SemiBold</family>
            <pointsize>30</pointsize>
           </font>
          </property>
@@ -343,7 +412,6 @@ border-radius: 5px;</string>
          </property>
          <property name="font">
           <font>
-           <family>Montserrat SemiBold</family>
            <pointsize>30</pointsize>
           </font>
          </property>
@@ -369,7 +437,6 @@ border-radius: 5px;</string>
          </property>
          <property name="font">
           <font>
-           <family>Montserrat SemiBold</family>
            <pointsize>30</pointsize>
           </font>
          </property>
@@ -395,7 +462,6 @@ border-radius: 5px;</string>
          </property>
          <property name="font">
           <font>
-           <family>Montserrat SemiBold</family>
            <pointsize>30</pointsize>
           </font>
          </property>
@@ -422,7 +488,6 @@ border-radius: 5px;
          </property>
          <property name="font">
           <font>
-           <family>Montserrat SemiBold</family>
            <pointsize>30</pointsize>
           </font>
          </property>
@@ -448,7 +513,6 @@ border-radius: 5px;</string>
          </property>
          <property name="font">
           <font>
-           <family>Montserrat SemiBold</family>
            <pointsize>30</pointsize>
           </font>
          </property>
@@ -474,7 +538,6 @@ border-radius: 5px;</string>
          </property>
          <property name="font">
           <font>
-           <family>Montserrat SemiBold</family>
            <pointsize>30</pointsize>
           </font>
          </property>
@@ -500,7 +563,6 @@ border-radius: 5px;</string>
          </property>
          <property name="font">
           <font>
-           <family>Montserrat SemiBold</family>
            <pointsize>30</pointsize>
           </font>
          </property>
@@ -526,7 +588,6 @@ border-radius: 5px;</string>
          </property>
          <property name="font">
           <font>
-           <family>Montserrat SemiBold</family>
            <pointsize>30</pointsize>
           </font>
          </property>
@@ -552,7 +613,6 @@ border-radius: 5px;</string>
          </property>
          <property name="font">
           <font>
-           <family>Montserrat SemiBold</family>
            <pointsize>30</pointsize>
           </font>
          </property>
@@ -578,7 +638,6 @@ border-radius: 5px;</string>
          </property>
          <property name="font">
           <font>
-           <family>Montserrat SemiBold</family>
            <pointsize>30</pointsize>
           </font>
          </property>
@@ -604,7 +663,6 @@ border-radius: 5px;</string>
          </property>
          <property name="font">
           <font>
-           <family>Montserrat SemiBold</family>
            <pointsize>30</pointsize>
           </font>
          </property>
@@ -630,7 +688,6 @@ border-radius: 5px;</string>
          </property>
          <property name="font">
           <font>
-           <family>Montserrat SemiBold</family>
            <pointsize>30</pointsize>
           </font>
          </property>

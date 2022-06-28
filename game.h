@@ -65,5 +65,9 @@ int repow(int c);
  **/
 Plateau addblock(Plateau plat);
 
+bool notMoved(Plateau plat1, Plateau plat2);
+
+int getScore();
+
 
 #endif // GAME_H

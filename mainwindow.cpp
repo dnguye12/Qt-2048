@@ -65,29 +65,39 @@ void MainWindow::draw() {
 
 }
 
+
+
 void MainWindow::keyPressEvent(QKeyEvent *e) {
-
-
+    Plateau last = plat;
     if(e->key() == Qt::Key_Up) {
         plat = deplacementHaut(plat);
-        plat = addblock(plat);
-        draw();
     }
     if(e->key() == Qt::Key_Down) {
         plat = deplacementBas(plat);
-        plat = addblock(plat);
-        draw();
     }
     if(e->key() == Qt::Key_Left) {
         plat = deplacementGauche(plat);
-        plat = addblock(plat);
-        draw();
     }
     if(e->key() == Qt::Key_Right) {
         plat = deplacementDroite(plat);
-        plat = addblock(plat);
-        draw();
     }
+
+    if(not notMoved(last, plat)) {
+        plat = addblock(plat);
+    }
+
+    ui->score->setText(QString::number(getScore()));
+    draw();
+
 }
 
+
+
+
+
+void MainWindow::on_toolButton_clicked()
+{
+    plat = plateauInitial();
+    draw();
+}
 
