@@ -17,11 +17,19 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void draw(Plateau plat);
+    void draw();
+
+signals:
+    void deplace(Plateau plat);
+
+public slots:
+   // void deplaced(Plateau plat);
 
 private:
     Ui::MainWindow *ui;
 
-    void keyPressEvent(Plateau plat, QKeyEvent *e);
+    void keyPressEvent(QKeyEvent *e);
+
+    Plateau plat;
 };
 #endif // MAINWINDOW_H

@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <QKeyEvent>
+#include <QDebug>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -9,8 +10,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    Plateau plat = plateauInitial();
-    draw(plat);
+    this->setFocusPolicy(Qt::StrongFocus);
+    plat = plateauInitial();
+    draw();
 
 }
 
@@ -19,7 +21,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::draw(Plateau plat) {
+void MainWindow::draw() {
     for(int i = 0; i < plat.size(); i++) {
         for(int j = 0; j < plat.size(); j++) {
             QString name = "btn";
@@ -63,9 +65,25 @@ void MainWindow::draw(Plateau plat) {
 
 }
 
-void MainWindow::keyPressEvent(Plateau plat, QKeyEvent *e) {
-    if(e->key() == Qt::Key_W) {
+void MainWindow::keyPressEvent(QKeyEvent *e) {
+
+
+    if(e->key() == Qt::Key_Up) {
         plat = deplacementHaut(plat);
-        emit deplace(plat);
+        draw();
+    }
+    if(e->key() == Qt::Key_Down) {
+        plat = deplacementBas(plat);
+        draw();
+    }
+    if(e->key() == Qt::Key_Left) {
+        plat = deplacementGauche(plat);
+        draw();
+    }
+    if(e->key() == Qt::Key_Right) {
+        plat = deplacementDroite(plat);
+        draw();
     }
 }
+
+
