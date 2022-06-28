@@ -1,14 +1,14 @@
 #include "game.h"
-
+#include <math.h>
 
 
 Plateau plateauVide() {
     Plateau plat = vector<vector<int>>(4);
-        for(int i =0; i < 4; i++)
-        {
-            plat[i] = {0, 0, 0, 0};
-        }
-        return plat;
+    for(int i =0; i < 4; i++)
+    {
+        plat[i] = {0, 0, 0, 0};
+    }
+    return plat;
 }
 
 Plateau plateauInitial()
@@ -200,5 +200,100 @@ Plateau deplacementBas(Plateau plat)
         }
     }
 
+    return plat;
+}
+
+bool estTermine(Plateau plat) {
+
+    for(int i = 0; i < 4; i++) {
+        for(int j = 0; j < 4; j++) {
+            if(plat[i][j] == 0) {
+                return false;
+            }
+        }
+    }
+
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++) {
+            if(plat[i][j] == plat[i+1][j] or plat[i][j] == plat[i][j+1]) {
+                return false;
+            }
+        }
+    }
+
+    for(int i = 0; i < 3; i++) {
+        if(plat[i][3] == plat[i + 1][3] || plat[3][i] == plat[3][i + 1]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool estGagnant(Plateau plat) {
+    for(int i = 0; i < 4; i++)
+    {
+        for(int j = 0; j <4; j++)
+        {
+            if(plat[i][j] >= 2048)
+            {
+                return true;
+            }
+        }
+
+    }
+    return false;
+}
+
+int repow(int c)
+{
+    int i;
+    for(i = 1; i <= c; i++)
+    {
+        if(pow(2, i) == c)
+        {
+            return i;
+        }
+    }
+    return i;
+}
+
+Plateau addblock(Plateau plat) {
+    int i, j;
+    srand(time(0));
+    while(1) {
+        i = rand()%4;
+        j = rand()%4;
+        if(plat[i][j] == 0) {
+            if(not estGagnant(plat)) {
+                plat[i][j] = tireDeuxOuQuatre();
+                break;
+            }else {
+                int max = 2048;
+
+                for(int x = 0; x < 4; x++)
+                {
+                    for(int y = 0; y < 4; y++)
+                    {
+                        if(plat[x][y] >= max)
+                        {
+                            max = plat[x][y];
+                        }
+                    }
+                }
+
+                int a = repow(max);
+                int b = tireDeuxOuQuatre();
+                if(b == 2) {
+                    plat[i][j] = tireDeuxOuQuatre();
+                    break;
+
+                }else {
+                    plat[i][j] = pow(2, (rand()%(a - 8) + 1));
+                    break;
+                }
+            }
+        }
+
+    }
     return plat;
 }

@@ -70,18 +70,22 @@ void MainWindow::keyPressEvent(QKeyEvent *e) {
 
     if(e->key() == Qt::Key_Up) {
         plat = deplacementHaut(plat);
+        plat = addblock(plat);
         draw();
     }
     if(e->key() == Qt::Key_Down) {
         plat = deplacementBas(plat);
+        plat = addblock(plat);
         draw();
     }
     if(e->key() == Qt::Key_Left) {
         plat = deplacementGauche(plat);
+        plat = addblock(plat);
         draw();
     }
     if(e->key() == Qt::Key_Right) {
         plat = deplacementDroite(plat);
+        plat = addblock(plat);
         draw();
     }
 }

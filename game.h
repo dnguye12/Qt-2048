@@ -38,14 +38,32 @@ Plateau deplacementHaut(Plateau plateau); /*implantée par Huy NGUYEN
  *  @return le Plateau une fois déplacé vers le bas
  **/
 Plateau deplacementBas(Plateau plateau); /*implantée par Huy NGUYEN
-/** déplace les tuiles d'un Plateau dans la direction donnée et génère une nouvelle tuile si le deplacement est valide
+///** déplace les tuiles d'un Plateau dans la direction donnée et génère une nouvelle tuile si le deplacement est valide
  *  @param plateau le Plateau
  *  @param direction la direction
  *  @return le Plateau déplacé dans la direction
  **/
 Plateau deplacement(Plateau plateau, int direction);
 
+/** permet de savoir si une partie est terminée
+ *  @param plateau un Plateau
+ *  @return true si le plateau est terminée, false sinon
+ **/
+bool estTermine(Plateau plateau);
+/** permet de savoir si une partie est gagnée
+ * @param plateau un Plateau
+ * @return true si le plateau contient un 2048, false sinon
+ **/
+bool estGagnant(Plateau plateau);
 
+int repow(int c);
+
+
+/** ajouter un nouveau bloc sur le plateau (2 ou 4). Si le jouer avait gagné, ajoute des blocs plus grands.
+ * @param plateau un Plateau
+ * @return le plateau après avoir ajouté un nouveau bloc
+ **/
+Plateau addblock(Plateau plat);
 
 
 #endif // GAME_H
