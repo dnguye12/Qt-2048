@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setWindowTitle("2048");
 
     QString fPath = QDir::currentPath() + "/best.txt";
     QFile file(fPath);
