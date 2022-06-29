@@ -35,6 +35,8 @@ private:
 
     void keyPressEvent(QKeyEvent *e);
 
+    void closeEvent(QCloseEvent *e);
+
     Plateau plat;
 };
 #endif // MAINWINDOW_H

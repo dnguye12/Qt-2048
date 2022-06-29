@@ -3,6 +3,7 @@
 
 #include <QKeyEvent>
 #include <QDebug>
+#include <QDir>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -10,6 +11,28 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    QString fPath = QDir::currentPath() + "/best.txt";
+    QFile file(fPath);
+
+    if (!file.open(QIODevice::ReadWrite))
+        return;
+
+    QTextStream in(&file);
+
+    while(!in.atEnd()) {
+        QString line = in.readLine();
+        if(line == "") {
+            ui->best->setText("0");
+
+        }
+        ui->best->setText(line);
+    }
+
+    file.close();
+
+
+
     this->setFocusPolicy(Qt::StrongFocus);
     plat = plateauInitial();
     draw();
@@ -86,7 +109,14 @@ void MainWindow::keyPressEvent(QKeyEvent *e) {
         plat = addblock(plat);
     }
 
+
     ui->score->setText(QString::number(getScore()));
+
+    int bst = ui->best->text().toInt();
+    if(bst <= getScore()) {
+        ui->best->setText(QString::number(getScore()));
+        qDebug() << "here";
+    }
     draw();
 
 }
@@ -97,7 +127,24 @@ void MainWindow::keyPressEvent(QKeyEvent *e) {
 
 void MainWindow::on_toolButton_clicked()
 {
+    resetScore();
+    ui->score->setText("0");
     plat = plateauInitial();
     draw();
+}
+
+void MainWindow::closeEvent(QCloseEvent *e) {
+    QString fPath = QDir::currentPath() + "/best.txt";
+        QFile file(fPath);
+        if (!file.open(QIODevice::ReadWrite))
+                 return;
+
+        QTextStream out(&file);
+
+        file.resize(0);
+
+        out <<ui->best->text().toInt();
+        file.flush();
+        file.close();
 }
 

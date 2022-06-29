@@ -317,3 +317,7 @@ bool notMoved(Plateau plat1, Plateau plat2) {
 int getScore() {
     return score;
 }
+
+void resetScore() {
+    score = 0;
+}
