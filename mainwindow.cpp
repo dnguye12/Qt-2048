@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "endscreen.h"
 
 #include <QKeyEvent>
 #include <QDebug>
@@ -91,34 +92,43 @@ void MainWindow::draw() {
 
 
 void MainWindow::keyPressEvent(QKeyEvent *e) {
-    Plateau last = plat;
-    if(e->key() == Qt::Key_Up) {
-        plat = deplacementHaut(plat);
-    }
-    if(e->key() == Qt::Key_Down) {
-        plat = deplacementBas(plat);
-    }
-    if(e->key() == Qt::Key_Left) {
-        plat = deplacementGauche(plat);
-    }
-    if(e->key() == Qt::Key_Right) {
-        plat = deplacementDroite(plat);
-    }
+    if(not estTermine(plat)) {
+        Plateau last = plat;
+        if(e->key() == Qt::Key_Up) {
+            plat = deplacementHaut(plat);
+        }
+        if(e->key() == Qt::Key_Down) {
+            plat = deplacementBas(plat);
+        }
+        if(e->key() == Qt::Key_Left) {
+            plat = deplacementGauche(plat);
+        }
+        if(e->key() == Qt::Key_Right) {
+            plat = deplacementDroite(plat);
+        }
 
-    if(not notMoved(last, plat)) {
-        plat = addblock(plat);
+        if(not notMoved(last, plat)) {
+            plat = addblock(plat);
+        }
+
+
+        ui->score->setText(QString::number(getScore()));
+
+        int bst = ui->best->text().toInt();
+        if(bst <= getScore()) {
+            ui->best->setText(QString::number(getScore()));
+            qDebug() << "here";
+        }
+        draw();
+    }else {
+        EndScreen es;
+        es.setModal(true);
+        es.setAttribute(Qt::WA_TranslucentBackground);
+        es.setWindowFlags(Qt::FramelessWindowHint);
+        connect(&es, &EndScreen::reset, this, &MainWindow::resetGame);
+        es.exec();
+
     }
-
-
-    ui->score->setText(QString::number(getScore()));
-
-    int bst = ui->best->text().toInt();
-    if(bst <= getScore()) {
-        ui->best->setText(QString::number(getScore()));
-        qDebug() << "here";
-    }
-    draw();
-
 }
 
 
@@ -146,5 +156,12 @@ void MainWindow::closeEvent(QCloseEvent *e) {
         out <<ui->best->text().toInt();
         file.flush();
         file.close();
+}
+
+void MainWindow::resetGame() {
+    resetScore();
+    ui->score->setText("0");
+    plat = plateauInitial();
+    draw();
 }
 

@@ -25,6 +25,8 @@ signals:
 public slots:
    // void deplaced(Plateau plat);
 
+    void resetGame();
+
 private slots:
     void on_toolButton_clicked();
 

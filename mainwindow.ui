@@ -52,6 +52,7 @@ QGridLayout {
         <widget class="QLabel" name="label">
          <property name="font">
           <font>
+           <family>Montserrat Black</family>
            <pointsize>48</pointsize>
            <bold>false</bold>
           </font>
@@ -113,7 +114,6 @@ color: white;</string>
             </property>
             <property name="font">
              <font>
-              <family>Montserrat</family>
               <pointsize>12</pointsize>
              </font>
             </property>
@@ -135,7 +135,6 @@ color: white;</string>
            <widget class="QLabel" name="score">
             <property name="font">
              <font>
-              <family>Montserrat Black</family>
               <pointsize>16</pointsize>
              </font>
             </property>
@@ -183,7 +182,6 @@ color: white;</string>
             </property>
             <property name="font">
              <font>
-              <family>Montserrat</family>
               <pointsize>12</pointsize>
              </font>
             </property>
@@ -199,7 +197,6 @@ color: white;</string>
            <widget class="QLabel" name="best">
             <property name="font">
              <font>
-              <family>Montserrat Black</family>
               <pointsize>16</pointsize>
              </font>
             </property>
