@@ -24,11 +24,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     while(!in.atEnd()) {
         QString line = in.readLine();
-        if(line == "") {
+        QStringList list = line.split(QLatin1Char(','), Qt::SkipEmptyParts);
+        if(list.size() == 0) {
+            ui->score->setText("0");
             ui->best->setText("0");
-
+        }else {
+            ui->score->setText(list.at(0));
+            ui->best->setText(list.at(1));
         }
-        ui->best->setText(line);
+
     }
 
     file.close();
@@ -36,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     this->setFocusPolicy(Qt::StrongFocus);
-    plat = plateauInitial();
+    plat = readLast();
     draw();
 
 }
@@ -44,6 +48,34 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+Plateau MainWindow::readLast() {
+    QList<QStringList> storage;
+    QString fPath = QDir::currentPath() + "/last.txt";
+    QFile file(fPath);
+
+    if (!file.open(QIODevice::ReadWrite))
+        return plateauInitial();
+
+    QTextStream in(&file);
+    while(!in.atEnd()) {
+        QString line = in.readLine();
+        QStringList list = line.split(QLatin1Char(','), Qt::SkipEmptyParts);
+        storage.append(list);
+    }
+
+    if(storage.size() == 0) {
+        return plateauInitial();
+    }
+
+    Plateau plat = plateauVide();
+    for(int i = 0; i < storage.size(); i++) {
+        for(int j = 0; j < storage.at(i).size(); j++) {
+            plat[i][j] = storage.at(i).at(j).toInt();
+        }
+    }
+    return plat;
 }
 
 void MainWindow::draw() {
@@ -144,19 +176,40 @@ void MainWindow::on_toolButton_clicked()
     draw();
 }
 
+void MainWindow::saveLast() {
+    QString fPath = QDir::currentPath() + "/last.txt";
+    QFile file(fPath);
+    if (!file.open(QIODevice::ReadWrite))
+        return;
+    file.resize(0);
+    QTextStream out(&file);
+
+    for(int i = 0; i < 4; i++) {
+        QString line = "";
+        for(int j = 0; j < 4; j++) {
+            line += (QString::number(plat[i][j]) + ",");
+        }
+        out << line << "\n";
+    }
+
+    file.flush();
+    file.close();
+}
+
 void MainWindow::closeEvent(QCloseEvent *e) {
+    saveLast();
     QString fPath = QDir::currentPath() + "/best.txt";
-        QFile file(fPath);
-        if (!file.open(QIODevice::ReadWrite))
-                 return;
+    QFile file(fPath);
+    if (!file.open(QIODevice::ReadWrite))
+        return;
 
-        QTextStream out(&file);
+    QTextStream out(&file);
 
-        file.resize(0);
+    file.resize(0);
 
-        out <<ui->best->text().toInt();
-        file.flush();
-        file.close();
+    out << ui->score->text() << "," <<  ui->best->text();
+    file.flush();
+    file.close();
 }
 
 void MainWindow::resetGame() {

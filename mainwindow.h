@@ -39,6 +39,10 @@ private:
 
     void closeEvent(QCloseEvent *e);
 
+    Plateau readLast();
+
+    void saveLast();
+
     Plateau plat;
 };
 #endif // MAINWINDOW_H
