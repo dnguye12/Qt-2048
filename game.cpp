@@ -318,6 +318,10 @@ int getScore() {
     return score;
 }
 
+void setScore(int n) {
+    score = n;
+}
+
 void resetScore() {
     score = 0;
 }

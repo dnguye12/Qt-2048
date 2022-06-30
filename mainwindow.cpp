@@ -5,6 +5,9 @@
 #include <QKeyEvent>
 #include <QDebug>
 #include <QDir>
+#include <QMediaPlayer>
+#include <QAudioOutput>
+
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -13,6 +16,15 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowTitle("2048");
+
+    QMediaPlayer *music = new QMediaPlayer();
+    QAudioOutput *aO = new QAudioOutput;
+    music->setAudioOutput(aO);
+    music->setSource(QUrl("qrc:/sounds/music.mp3"));
+
+    music->play();
+    connect(music,&QMediaPlayer::mediaStatusChanged,music,&QMediaPlayer::play);
+
 
     QString fPath = QDir::currentPath() + "/best.txt";
     QFile file(fPath);
@@ -27,9 +39,11 @@ MainWindow::MainWindow(QWidget *parent)
         QStringList list = line.split(QLatin1Char(','), Qt::SkipEmptyParts);
         if(list.size() == 0) {
             ui->score->setText("0");
+            setScore(0);
             ui->best->setText("0");
         }else {
             ui->score->setText(list.at(0));
+            setScore(list.at(0).toInt());
             ui->best->setText(list.at(1));
         }
 

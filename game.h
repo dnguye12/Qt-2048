@@ -69,6 +69,8 @@ bool notMoved(Plateau plat1, Plateau plat2);
 
 int getScore();
 
+void setScore(int n);
+
 void resetScore();
 
 
