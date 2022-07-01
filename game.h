@@ -73,5 +73,7 @@ void setScore(int n);
 
 void resetScore();
 
+void mergeSFX();
+
 
 #endif // GAME_H

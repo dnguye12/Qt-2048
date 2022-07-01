@@ -1,6 +1,9 @@
 #include "game.h"
 #include <math.h>
 
+#include <QMediaPlayer>
+#include <QAudioOutput>
+
 size_t score = 0;
 
 Plateau plateauVide() {
@@ -45,6 +48,7 @@ int tireDeuxOuQuatre() {
 
 Plateau deplacementGauche(Plateau plat)
 {
+
     int i,j;
     int hi, hj;
     for(i=0; i<4; i++)
@@ -61,6 +65,7 @@ Plateau deplacementGauche(Plateau plat)
                         plat[hi][hj]*=2;
                         plat[i][j]=0;
                         score+=plat[hi][hj];
+                        mergeSFX();
                     }
                     else
                     {
@@ -102,6 +107,7 @@ Plateau deplacementDroite(Plateau plat)
                         plat[hi][hj]*=2;
                         plat[i][j]=0;
                         score+=plat[hi][hj];
+                        mergeSFX();
                     }
                     else
                     {
@@ -143,6 +149,7 @@ Plateau deplacementHaut(Plateau plat)
                         plat[hi][hj]*=2;
                         plat[i][j]=0;
                         score+=plat[hi][hj];
+                        mergeSFX();
                     }
                     else
                     {
@@ -185,6 +192,7 @@ Plateau deplacementBas(Plateau plat)
                         plat[hi][hj]*=2;
                         plat[i][j]=0;
                         score+=plat[hi][hj];
+                        mergeSFX();
                     }
                     else
                     {
@@ -324,4 +332,13 @@ void setScore(int n) {
 
 void resetScore() {
     score = 0;
+}
+
+void mergeSFX() {
+    QMediaPlayer *music = new QMediaPlayer();
+    QAudioOutput *aO = new QAudioOutput;
+    music->setAudioOutput(aO);
+    music->setSource(QUrl("qrc:/sounds/Pop.mp3"));
+    aO->setVolume(0.25);
+    music->play();
 }

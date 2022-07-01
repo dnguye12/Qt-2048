@@ -30,6 +30,8 @@ public slots:
 private slots:
     void on_toolButton_clicked();
 
+    void playMusic();
+
 private:
     Ui::MainWindow *ui;
 

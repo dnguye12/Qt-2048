@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/sounds">
         <file>music.mp3</file>
+        <file>Pop.mp3</file>
     </qresource>
 </RCC>

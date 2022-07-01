@@ -17,13 +17,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle("2048");
 
+
     QMediaPlayer *music = new QMediaPlayer();
     QAudioOutput *aO = new QAudioOutput;
     music->setAudioOutput(aO);
+    connect(music, &QMediaPlayer::mediaStatusChanged, this, &MainWindow::playMusic);
     music->setSource(QUrl("qrc:/sounds/music.mp3"));
+    aO->setVolume(0);
+    //music->play();
 
-    music->play();
-    connect(music,&QMediaPlayer::mediaStatusChanged,music,&QMediaPlayer::play);
 
 
     QString fPath = QDir::currentPath() + "/best.txt";
@@ -90,6 +92,15 @@ Plateau MainWindow::readLast() {
         }
     }
     return plat;
+}
+
+void MainWindow::playMusic() {
+    QMediaPlayer *music = new QMediaPlayer();
+    QAudioOutput *aO = new QAudioOutput;
+    music->setAudioOutput(aO);
+    music->setSource(QUrl("qrc:/sounds/music.mp3"));
+    aO->setVolume(0.1);
+    music->play();
 }
 
 void MainWindow::draw() {
@@ -164,7 +175,6 @@ void MainWindow::keyPressEvent(QKeyEvent *e) {
         int bst = ui->best->text().toInt();
         if(bst <= getScore()) {
             ui->best->setText(QString::number(getScore()));
-            qDebug() << "here";
         }
         draw();
     }else {
