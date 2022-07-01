@@ -1,4 +1,4 @@
-2048 Clone Using Qt and C++
+2048 Clone Using Qt and C++. </br>
 Implemented: game logic, sound effect, simple data base.
 
-<div style="display:flex; justify-content: center;"><img src="2048.png" alt="2048"></div>
+<img align="center" src="2048.png">
